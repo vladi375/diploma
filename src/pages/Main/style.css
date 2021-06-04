@@ -1,0 +1,15 @@
+.page-main {
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.welcome-text {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+h3 {
+  margin: 30px 0;
+}

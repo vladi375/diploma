@@ -1,0 +1,17 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-link {
+  color: black;
+}
+
+.page-link:hover {
+  color: black;
+}
+
+.page-link:focus {
+  box-shadow: 0 0 0 0.2rem rgb(129 133 138 / 25%);
+}

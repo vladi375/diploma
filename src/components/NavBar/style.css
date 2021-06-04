@@ -1,0 +1,59 @@
+.navbar-container a {
+  color: whitesmoke;
+  text-decoration: none; /* Отменяем подчеркивание у ссылки */
+}
+
+.navbar-container a:hover {
+  cursor: pointer;
+  color: #ff8b38;
+  transition-duration: 0.4s;
+  text-decoration: none;
+}
+
+.navbar-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: black;
+}
+
+.navbar {
+  height: auto;
+  z-index: 10;
+  top: 0;
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0;
+}
+
+.navbar-cart {
+  width: 25%;
+  height: auto;
+  z-index: 10;
+  top: 0;
+  color: #333;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.navbar-signin {
+  width: 10%;
+  height: auto;
+  z-index: 10;
+  top: 0;
+  color: #333;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.logo {
+  width: 150px;
+  height: 100px;
+}

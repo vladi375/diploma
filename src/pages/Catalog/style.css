@@ -1,0 +1,19 @@
+.page-catalog a {
+  color: black;
+  text-decoration: none;
+}
+
+.page-catalog a:hover {
+  color: #ff8b38;
+  transition-duration: 0.4s;
+  text-decoration: none;
+}
+
+.catalog-img {
+  height: 300px;
+  object-fit: contain;
+}
+
+.product-card {
+  max-height: 486px;
+}
