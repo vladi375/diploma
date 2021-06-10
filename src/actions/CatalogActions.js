@@ -12,20 +12,31 @@ export const getCatalog = () => {
   };
 };
 
-export const addToCart = (id) => {
+export const addToCart = (id, amount, value) => {
   return {
     type: actionTypes.ADD_TO_CART,
     payload: {
       id: id,
+      quantity: amount,
+      price: value,
     },
   };
 };
 
-export const removeFromCart = (id) => {
+export const removeFromCart = (id, amount, value) => {
   return {
     type: actionTypes.REMOVE_FROM_CART,
     payload: {
       id: id,
+      quantity: amount,
+      price: value,
     },
+  };
+};
+
+export const placeOrder = (payload) => {
+  return {
+    type: actionTypes.PLACE_ORDER,
+    payload,
   };
 };

@@ -9,6 +9,7 @@ const actionTypes = {
   REMOVE_FROM_CART: 'REMOVE_FROM_CART',
   GET_PRODUCT: 'GET_PRODUCT',
   ERROR_GETTING_PRODUCT: 'ERROR_GETTING_PRODUCT',
+  PLACE_ORDER: 'PLACE_ORDER',
 };
 
 export default actionTypes;

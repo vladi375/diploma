@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Pagination } from 'react-bootstrap';
 import { ScrollTo } from 'react-scroll-to/dist';
 
@@ -6,14 +6,15 @@ import './style.css';
 
 const PaginationBasic = ({ productsPerPage, totalProducts, paginate }) => {
   const pageNumbers = [];
-
-  for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
-    pageNumbers.push(
-      <Pagination.Item onClick={() => paginate(i)} key={i}>
-        {i}
-      </Pagination.Item>
-    );
-  }
+  useMemo(() => {
+    for (let i = 1; i <= Math.ceil(totalProducts / productsPerPage); i++) {
+      pageNumbers.push(
+        <Pagination.Item onClick={() => paginate(i)} key={i}>
+          {i}
+        </Pagination.Item>
+      );
+    }
+  }, [paginate]);
 
   return (
     <div className='pagination'>

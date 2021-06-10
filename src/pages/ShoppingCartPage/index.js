@@ -1,4 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
@@ -12,8 +14,10 @@ import { removeFromCart } from '../../actions/CatalogActions';
 const ShoppingCartPage = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.catalog.cart);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [totalQuantity, setTotalQuantity] = useState(0);
+  const totalPrice = useSelector((state) => state.catalog.totalPrice);
+  const totalQuantity = useSelector((state) => state.catalog.totalQuantity);
+  // const [totalPrice, setTotalPrice] = useState(0);
+  // const [totalQuantity, setTotalQuantity] = useState(0);
   const [state, setState] = React.useState({
     open: false,
     vertical: 'top',
@@ -21,18 +25,18 @@ const ShoppingCartPage = () => {
   });
   const { vertical, horizontal, open } = state;
 
-  useEffect(() => {
-    let price = 0;
-    let quantity = 0;
+  // useEffect(() => {
+  //   let price = 0;
+  //   let quantity = 0;
 
-    cart.forEach((item) => {
-      quantity += item.quantity;
-      price += item.quantity * item.price;
-    });
+  //   cart.forEach((item) => {
+  //     quantity += item.quantity;
+  //     price += item.quantity * item.price;
+  //   });
 
-    setTotalPrice(price);
-    setTotalQuantity(quantity);
-  }, [cart, totalPrice, totalQuantity, setTotalPrice, setTotalQuantity]);
+  //   setTotalPrice(price);
+  //   setTotalQuantity(quantity);
+  // }, [cart, totalPrice, totalQuantity, setTotalPrice, setTotalQuantity]);
 
   const Alert = (props) => {
     return <MuiAlert elevation={6} variant='filled' {...props} />;
@@ -58,12 +62,18 @@ const ShoppingCartPage = () => {
   };
 
   const onRemoveFromCart = useCallback(
-    (id) => {
-      dispatch(removeFromCart(id));
+    (id, amount, value) => {
+      dispatch(removeFromCart(id, amount, value));
       handleClick({ vertical: 'bottom', horizontal: 'left' });
     },
     [dispatch]
   );
+
+  const history = useHistory();
+
+  const redirectToCheckout = () => {
+    history.push('/checkout');
+  };
 
   return (
     <div className='page'>
@@ -77,7 +87,9 @@ const ShoppingCartPage = () => {
                   <Card.Text>{totalPrice} BYN</Card.Text>
                   <Card.Title>Total Quantity:</Card.Title>
                   <Card.Text>{totalQuantity}</Card.Text>
-                  <Button variant='dark'>Proceed To Checkout</Button>
+                  <Button variant='dark' onClick={redirectToCheckout}>
+                    Proceed To Checkout
+                  </Button>
                 </Card.Body>
               </Card>
             ) : (
@@ -113,7 +125,13 @@ const ShoppingCartPage = () => {
                             <Button
                               className='justify-content-end'
                               variant='dark'
-                              onClick={() => onRemoveFromCart(item.id)}
+                              onClick={() =>
+                                onRemoveFromCart(
+                                  item.id,
+                                  item.quantity,
+                                  item.price
+                                )
+                              }
                             >
                               Remove From Cart
                             </Button>
@@ -140,7 +158,7 @@ const ShoppingCartPage = () => {
                   body
                   className='d-flex justify-content-between align-items-center'
                 >
-                  YOU HAVEN'T ADDED ANYTHING YET
+                  CART IS EMPTY
                 </Card>
               )}
             </Row>

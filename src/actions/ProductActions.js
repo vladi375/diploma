@@ -1,15 +1,13 @@
 import axios from 'axios';
 import actionTypes from './actionTypes';
 
-export const getProduct = (props) => {
+export const getProduct = (id) => {
   return (dispatch) => {
-    axios
-      .get(`http://localhost:3005/catalog/${props.match.params.id}`)
-      .then((response) => {
-        dispatch({
-          type: actionTypes.GET_PRODUCT,
-          payload: response.data,
-        });
+    axios.get(`http://localhost:3005/catalog/${id}`).then((response) => {
+      dispatch({
+        type: actionTypes.GET_PRODUCT,
+        payload: response.data,
       });
+    });
   };
 };

@@ -28,8 +28,8 @@ const ProductPage = (props) => {
   const { vertical, horizontal, open } = state;
 
   useEffect(() => {
-    dispatch(getProduct(props));
-  }, [dispatch, props]);
+    dispatch(getProduct(props.match.params.id));
+  }, [dispatch, props.match.params.id]);
 
   const onAddToCart = useCallback(
     (id) => {

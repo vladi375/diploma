@@ -29,7 +29,7 @@ export default function CustomizedBadges() {
     });
 
     setCartCount(count);
-  }, [cart, cartCount]);
+  }, [cart]);
 
   return (
     <IconButton aria-label='cart'>

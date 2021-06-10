@@ -48,8 +48,8 @@ const CatalogPage = () => {
   }, [dispatch]);
 
   const onAddToCart = useCallback(
-    (id) => {
-      dispatch(addToCart(id));
+    (id, amount, value) => {
+      dispatch(addToCart(id, amount, value));
       handleClick({ vertical: 'bottom', horizontal: 'left' });
     },
     [dispatch]
@@ -71,7 +71,7 @@ const CatalogPage = () => {
   const classes = useStyles();
 
   const handleClick = (newState) => {
-    setState({ open: true, ...newState });
+    setState({ ...newState, open: true });
   };
 
   const handleClose = () => {
@@ -122,7 +122,9 @@ const CatalogPage = () => {
                           <CardButton
                             className='justify-content-end'
                             variant='dark'
-                            onClick={() => onAddToCart(item.id)}
+                            onClick={() =>
+                              onAddToCart(item.id, item.quantity, item.price)
+                            }
                           >
                             Add To Cart
                           </CardButton>
