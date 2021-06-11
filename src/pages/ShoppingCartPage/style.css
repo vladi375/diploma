@@ -1,0 +1,8 @@
+.product-cart-img {
+  height: 300px;
+  object-fit: contain;
+}
+
+.product-card {
+  max-height: 486px;
+}
